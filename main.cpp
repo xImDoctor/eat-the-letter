@@ -30,6 +30,15 @@ void testGetImageExtension() {
 
 }
 
+// test symbs
+const std::string ASCII_SYMBOLS = "@%#/+=-:.";
+
+
+char getASCIIChar(int pixelBrightness) {
+
+	return ASCII_SYMBOLS[pixelBrightness * (ASCII_SYMBOLS.size() - 1) / 255];
+}
+
 
 int main() {
 
