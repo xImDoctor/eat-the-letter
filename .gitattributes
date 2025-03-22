@@ -1,3 +1,4 @@
 # Auto detect text files and perform LF normalization
-* text working-tree-encoding=windows-1251
-
+* text=auto
+*.cpp   text working-tree-encoding=windows-1251
+*.h     text working-tree-encoding=windows-1251
