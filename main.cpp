@@ -1,10 +1,8 @@
 //#include "ascii_preprocessing.h" // string, iostream
 
-#include <iostream>
-#include <string>
-
 #include "printer/printer.h"
-#include "img-processing/img-processing.h"
+#include "img-processing/img-processing.h"	// ascii_preprocessing.h
+
 
 std::string getAbsolutePath(const std::string& relativePath) {
 
