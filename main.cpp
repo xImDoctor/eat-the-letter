@@ -27,11 +27,14 @@ int main() {
 	//std::wstring testString = L"This is text print string";
 	//printDocument(testString);
 
-	const char* fileName = "shaman.png";
+	const char* fileName = "kit.jpg";
+	const char* outputName = "output.jpg";
 	//std::string fullPath = getAbsolutePath(std::string(fileName));
 	//std::cout << "Абсолютный путь к файлу: " << fullPath << std::endl;
 
-	PROCESS_IMAGE(fileName, "output.png");
+	PROCESS_IMAGE(fileName, outputName);
+
+	showJPGtoASCII(outputName);
 
 
 	return 0;

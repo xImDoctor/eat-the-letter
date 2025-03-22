@@ -51,24 +51,34 @@ void processImageJPEG(const char* inputPath, const char* outputPath) {
 }
 
 
-void showPNGtoASCII(const char* imagePath) {
+void showJPGtoASCII(const char* imagePath) {
 
-    FIBITMAP* bitmap = FreeImage_Load(FIF_PNG, imagePath, PNG_DEFAULT);
-    if (!bitmap) {
+    FIBITMAP* grayBitmap = FreeImage_Load(FIF_JPEG, imagePath, JPEG_DEFAULT);
+    if (!grayBitmap) {
         std::cerr << "Ошибка загрузки изображения: " << imagePath << '\n';
         return;
     }
 
-    int width = FreeImage_GetWidth(bitmap);
-    int height = FreeImage_GetHeight(bitmap);
+    int width = FreeImage_GetWidth(grayBitmap);
+    int height = FreeImage_GetHeight(grayBitmap);
 
-    for (int y = 0; y < height; y++) {
+
+    int consoleWidth = 80;
+    int consoleHeight = 40;
+
+    //FIBITMAP* resizedBitmap = FreeImage_Rescale(grayBitmap, consoleWidth, consoleHeight, FILTER_BILINEAR);
+    //FreeImage_Unload(grayBitmap);
+
+    BYTE pixelValue;
+    for (int y = height-1; y >= 0; y--) {
+
         for (int x = 0; x < width; x++) {
-            RGBQUAD color;
-            FreeImage_GetPixelColor(bitmap, x, y, &color);
-            int brightness = (color.rgbRed + color.rgbGreen + color.rgbBlue) / 3;
-            std::cout << brightness << " ";
+
+            FreeImage_GetPixelIndex(grayBitmap, x, y, &pixelValue);
+            int brightness = (int)pixelValue;
+            std::cout << imdoc::getASCIIChar(brightness) << " ";
         }
+
         std::cout << std::endl;
     }
 

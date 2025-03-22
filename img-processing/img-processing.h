@@ -29,5 +29,7 @@ void processImagePNG(const char* inputPath, const char* outputPath);
 
 void processImageJPEG(const char* inputPath, const char* outputPath);
 
+void showJPGtoASCII(const char* imagePath);
+
 
 #endif
