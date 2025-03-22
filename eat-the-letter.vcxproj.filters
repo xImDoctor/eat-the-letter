@@ -26,5 +26,8 @@
     <ClInclude Include="ascii_preprocessing.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="image_processing.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
