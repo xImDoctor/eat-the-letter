@@ -18,24 +18,24 @@
     <ClCompile Include="main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="ascii_preprocessing.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="img-processing\img_processing.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="printer\printer.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="ascii-preprocessing\ascii_preprocessing.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ascii_preprocessing.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="img-processing\img-processing.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="printer\printer.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="ascii-preprocessing\ascii_preprocessing.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

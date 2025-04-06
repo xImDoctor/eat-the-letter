@@ -139,13 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ascii_preprocessing.cpp" />
+    <ClCompile Include="ascii-preprocessing\ascii_preprocessing.cpp" />
     <ClCompile Include="img-processing\img_processing.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="printer\printer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ascii_preprocessing.h" />
+    <ClInclude Include="ascii-preprocessing\ascii_preprocessing.h" />
     <ClInclude Include="img-processing\img-processing.h" />
     <ClInclude Include="printer\printer.h" />
   </ItemGroup>
