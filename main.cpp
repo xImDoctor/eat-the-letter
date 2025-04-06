@@ -19,14 +19,11 @@ int main() {
 
 	const char* textASCIIfileName = "image_to_ascii.txt";
 
-	PROCESS_IMAGE(fileName, outputName);				//processJPG, processPNG
-	RESCALE_IMAGE(outputName, resizedOutputName, 1, 0);
+	//PROCESS_IMAGE(fileName, outputName);					//processJPG, processPNG
+	//RESCALE_IMAGE(outputName, resizedOutputName, 1, 0);	//rescaleJPG, rescalePNG
 
 	std::ofstream textASCII(textASCIIfileName);
 	TRANSFORM_IMAGE_TO_ASCII(resizedOutputName, textASCII);	//showJPG, showPNG
-
-
-
 
 
 	return 0;
