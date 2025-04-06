@@ -1,7 +1,7 @@
 #ifndef _IMAGE_PREPROCESSING_H_
 #define _IMAGE_PREPROCESSING_H_
 
-#include "../ascii_preprocessing.h"
+#include "../ascii-preprocessing/ascii_preprocessing.h"
 
 #include <FreeImage.h>
 #include <iostream>
