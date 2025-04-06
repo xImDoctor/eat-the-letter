@@ -13,9 +13,9 @@
 #define PROCESS_IMAGE(file, output) \
     do { \
         if (imdoc::getImageExtension(file) == "png") { \
-            processImagePNG(file, output); \
+            imdoc::processImagePNG(file, output); \
         } else if (imdoc::getImageExtension(file) == "jpg") { \
-            processImageJPEG(file, output); \
+            imdoc::processImageJPEG(file, output); \
         } \
         else { \
             std::cerr << "Ошибка: не подходящее расширение файла " << file << '\n'; \
@@ -26,9 +26,9 @@
 #define SHOW_IMAGE_TO_ASCII(processedFile) \
     do { \
         if (imdoc::getImageExtension(processedFile) == "png") { \
-            showPNGtoASCII(processedFile); \
+            imdoc::showPNGtoASCII(processedFile); \
         } else if (imdoc::getImageExtension(processedFile) == "jpg" || imdoc::getImageExtension(processedFile) == "jpeg") { \
-            showJPGtoASCII(processedFile); \
+            imdoc::showJPGtoASCII(processedFile); \
         } \
         else { \
             std::cerr << "Ошибка: не подходящее расширение файла " << processedFile << '\n'; \
@@ -36,10 +36,14 @@
         } \
     } while(0)
 
-void processImagePNG(const char* inputPath, const char* outputPath);
-void processImageJPEG(const char* inputPath, const char* outputPath);
 
-void showJPGtoASCII(const char* imagePath);
-void showPNGtoASCII(const char* imagePath);
+namespace imdoc {
+
+    void processImagePNG(const char* inputPath, const char* outputPath);
+    void processImageJPEG(const char* inputPath, const char* outputPath);
+
+    void showJPGtoASCII(const char* imagePath);
+    void showPNGtoASCII(const char* imagePath);
+}
 
 #endif

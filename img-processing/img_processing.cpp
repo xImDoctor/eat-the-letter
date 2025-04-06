@@ -1,7 +1,7 @@
 #include "img-processing.h"
 
 
-void processImagePNG(const char* inputPath, const char* outputPath) {
+void imdoc::processImagePNG(const char* inputPath, const char* outputPath) {
     FreeImage_Initialise();
 
     // load PNG
@@ -26,7 +26,7 @@ void processImagePNG(const char* inputPath, const char* outputPath) {
 }
 
 
-void processImageJPEG(const char* inputPath, const char* outputPath) {
+void imdoc::processImageJPEG(const char* inputPath, const char* outputPath) {
     FreeImage_Initialise();
 
     // load png
@@ -51,7 +51,7 @@ void processImageJPEG(const char* inputPath, const char* outputPath) {
 }
 
 
-void showJPGtoASCII(const char* imagePath) {
+void imdoc::showJPGtoASCII(const char* imagePath) {
 
     FIBITMAP* grayBitmap = FreeImage_Load(FIF_JPEG, imagePath, JPEG_DEFAULT);
     if (!grayBitmap) {
@@ -79,7 +79,7 @@ void showJPGtoASCII(const char* imagePath) {
 }
 
 
-void showPNGtoASCII(const char* imagePath) {
+void imdoc::showPNGtoASCII(const char* imagePath) {
 
     FIBITMAP* grayBitmap = FreeImage_Load(FIF_PNG, imagePath, PNG_DEFAULT);
     if (!grayBitmap) {
