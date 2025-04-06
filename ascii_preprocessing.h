@@ -3,7 +3,7 @@
 
 #include <string>
 #include <iostream>
-
+#include <Windows.h>
 
 namespace imdoc {
 
@@ -11,6 +11,9 @@ namespace imdoc {
 	   Removes dot. If no extension returns "NONE".
 	   Returns string object. */
 	std::string getImageExtension(const char* fileName);
+
+	/* Get absolute path of file in string relativePath using Windows.h GetFullPathNameA*/
+	std::string getAbsolutePath(const std::string& relativePath);
 
 	// method to test GetImageExtension
 	void testGetImageExtension();

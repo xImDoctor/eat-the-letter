@@ -20,6 +20,17 @@ std::string imdoc::getImageExtension(const char* fileName) {
 	return fileExtension;
 }
 
+// get absolute path using relative one
+std::string imdoc::getAbsolutePath(const std::string& relativePath) {
+
+	char fullPath[MAX_PATH];
+	if (GetFullPathNameA(relativePath.c_str(), MAX_PATH, fullPath, nullptr))
+		return std::string(fullPath);
+
+	// return string with exception msg if file not found
+	return std::string("Exception: file not found");
+}
+
 // method to test GetImageExtension
 void imdoc::testGetImageExtension() {
 
