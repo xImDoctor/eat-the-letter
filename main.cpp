@@ -15,7 +15,6 @@ std::string getAbsolutePath(const std::string& relativePath) {
 }
 
 
-
 int main() {
 
 	setlocale(0, "rus");
@@ -32,9 +31,9 @@ int main() {
 	//std::string fullPath = getAbsolutePath(std::string(fileName));
 	//std::cout << "Абсолютный путь к файлу: " << fullPath << std::endl;
 
-	PROCESS_IMAGE(fileName, outputName);
+	PROCESS_IMAGE(fileName, outputName);	//processJPG, processPNG
+	SHOW_IMAGE_TO_ASCII(outputName);		//showJPG, showPNG
 
-	showJPGtoASCII(outputName);
 
 
 	return 0;
