@@ -50,6 +50,65 @@ void imdoc::processImageJPEG(const char* inputPath, const char* outputPath) {
     FreeImage_DeInitialise();
 }
 
+void imdoc::rescaleImageJPEG(const char* imagePath, const char* outputPath, int scaleFactor) {
+
+    FIBITMAP* grayBitmap = FreeImage_Load(FIF_JPEG, imagePath, JPEG_DEFAULT);
+    if (!grayBitmap) {
+        std::cerr << "Ошибка загрузки изображения: " << imagePath << '\n';
+        return;
+    }
+
+    int width = FreeImage_GetWidth(grayBitmap);
+    int height = FreeImage_GetHeight(grayBitmap);
+
+
+    int scaledWidth = width / scaleFactor;
+    int scaledHeight = height / scaleFactor;
+
+    FIBITMAP* resizedBitmap = FreeImage_Rescale(grayBitmap, scaledWidth, scaledHeight, FILTER_BILINEAR);
+    FreeImage_Unload(grayBitmap);
+
+    std::cout << "Размер изображения изменён с " << width << 'x' << height << " до " << scaledWidth << 'x' << scaledHeight << std::endl;
+
+    // save gray result
+    if (FreeImage_Save(FIF_JPEG, resizedBitmap, outputPath, JPEG_DEFAULT))
+        std::cout << "Изменённое изображение сохранено: " << outputPath << std::endl;
+    else
+        std::cerr << "Ошибка сохранения!\n";
+
+    FreeImage_Unload(resizedBitmap);
+    FreeImage_DeInitialise();
+}
+
+void imdoc::rescaleImagePNG(const char* imagePath, const char* outputPath, int scaleFactor) {
+
+    FIBITMAP* grayBitmap = FreeImage_Load(FIF_PNG, imagePath, PNG_DEFAULT);
+    if (!grayBitmap) {
+        std::cerr << "Ошибка загрузки изображения: " << imagePath << '\n';
+        return;
+    }
+
+    int width = FreeImage_GetWidth(grayBitmap);
+    int height = FreeImage_GetHeight(grayBitmap);
+
+
+    int scaledWidth = width / scaleFactor;
+    int scaledHeight = height / scaleFactor;
+
+    FIBITMAP* resizedBitmap = FreeImage_Rescale(grayBitmap, scaledWidth, scaledHeight, FILTER_BILINEAR);
+    FreeImage_Unload(grayBitmap);
+
+    std::cout << "Размер изображения изменён с " << width << 'x' << height << " до " << scaledWidth << 'x' << scaledHeight << std::endl;
+
+    // save gray result
+    if (FreeImage_Save(FIF_PNG, resizedBitmap, outputPath, PNG_DEFAULT))
+        std::cout << "Изменённое изображение сохранено: " << outputPath << std::endl;
+    else
+        std::cerr << "Ошибка сохранения!\n";
+
+    FreeImage_Unload(resizedBitmap);
+    FreeImage_DeInitialise();
+}
 
 void imdoc::transformJPGtoASCII(const char* imagePath, std::ofstream& outputFile) {
 
@@ -83,6 +142,11 @@ void imdoc::transformJPGtoASCII(const char* imagePath, std::ofstream& outputFile
         outputFile << '\n';
     }
 
+    FreeImage_Unload(grayBitmap);
+    FreeImage_DeInitialise();
+
+    outputFile.close();
+    std::cout << std::endl << "Запись в файл окончена!" << std::endl;
 }
 
 
@@ -103,12 +167,6 @@ void imdoc::transformPNGtoASCII(const char* imagePath, std::ofstream& outputFile
     int height = FreeImage_GetHeight(grayBitmap);
 
 
-    //int consoleWidth = 80;
-    //int consoleHeight = 40;
-
-    //FIBITMAP* resizedBitmap = FreeImage_Rescale(grayBitmap, consoleWidth, consoleHeight, FILTER_BILINEAR);
-    //FreeImage_Unload(grayBitmap);
-
     BYTE pixelValue;
     for (int y = height - 1; y >= 0; y--) {
 
@@ -123,5 +181,11 @@ void imdoc::transformPNGtoASCII(const char* imagePath, std::ofstream& outputFile
         std::cout << std::endl;
         outputFile << '\n';
     }
+
+    FreeImage_Unload(grayBitmap);
+    FreeImage_DeInitialise();
+
+    outputFile.close();
+    std::cout << std::endl << "Запись в файл окончена!" << std::endl;
 
 }
