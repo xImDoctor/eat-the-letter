@@ -51,7 +51,12 @@ void imdoc::processImageJPEG(const char* inputPath, const char* outputPath) {
 }
 
 
-void imdoc::showJPGtoASCII(const char* imagePath) {
+void imdoc::transformJPGtoASCII(const char* imagePath, std::ofstream& outputFile) {
+
+    if (!outputFile.is_open()) {
+        std::cerr << "Ошибка открытия файла вывода\n";
+        return;
+    }
 
     FIBITMAP* grayBitmap = FreeImage_Load(FIF_JPEG, imagePath, JPEG_DEFAULT);
     if (!grayBitmap) {
@@ -70,16 +75,23 @@ void imdoc::showJPGtoASCII(const char* imagePath) {
 
             FreeImage_GetPixelIndex(grayBitmap, x, y, &pixelValue);
             int brightness = (int)pixelValue;
-            std::cout << imdoc::getASCIIChar(brightness) << " ";
+            std::cout << imdoc::getASCIIChar(brightness) << ' ';
+            outputFile << imdoc::getASCIIChar(brightness) << ' ';
         }
 
         std::cout << std::endl;
+        outputFile << '\n';
     }
 
 }
 
 
-void imdoc::showPNGtoASCII(const char* imagePath) {
+void imdoc::transformPNGtoASCII(const char* imagePath, std::ofstream& outputFile) {
+
+    if (!outputFile.is_open()) {
+        std::cerr << "Ошибка открытия файла вывода\n";
+        return;
+    }
 
     FIBITMAP* grayBitmap = FreeImage_Load(FIF_PNG, imagePath, PNG_DEFAULT);
     if (!grayBitmap) {
@@ -104,10 +116,12 @@ void imdoc::showPNGtoASCII(const char* imagePath) {
 
             FreeImage_GetPixelIndex(grayBitmap, x, y, &pixelValue);
             int brightness = (int)pixelValue;
-            std::cout << imdoc::getASCIIChar(brightness) << " ";
+            std::cout << imdoc::getASCIIChar(brightness) << ' ';
+            outputFile << imdoc::getASCIIChar(brightness) << ' ';
         }
 
         std::cout << std::endl;
+        outputFile << '\n';
     }
 
 }
