@@ -5,8 +5,6 @@
 
 
 
-
-
 int main() {
 
 	setlocale(0, "rus");
@@ -15,14 +13,19 @@ int main() {
 	//printDocument(testString);
 
 	const char* fileName = "kit.jpg";
-	const char* outputName = "output.jpg";
-	const char* textASCIIfileName = "image_to_ascii.txt"
 
-	PROCESS_IMAGE(fileName, outputName);	//processJPG, processPNG
+	const char* outputName = "output.jpg";
+	const char* resizedOutputName = "resized.jpg";
+
+	const char* textASCIIfileName = "image_to_ascii.txt";
+
+	PROCESS_IMAGE(fileName, outputName);				//processJPG, processPNG
+	RESCALE_IMAGE(outputName, resizedOutputName, 1, 0);
 
 	std::ofstream textASCII(textASCIIfileName);
+	TRANSFORM_IMAGE_TO_ASCII(resizedOutputName, textASCII);	//showJPG, showPNG
 
-	SHOW_IMAGE_TO_ASCII(outputName, textASCII);		//showJPG, showPNG
+
 
 
 
