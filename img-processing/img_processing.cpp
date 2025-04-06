@@ -63,14 +63,42 @@ void showJPGtoASCII(const char* imagePath) {
     int height = FreeImage_GetHeight(grayBitmap);
 
 
-    int consoleWidth = 80;
-    int consoleHeight = 40;
+    BYTE pixelValue;
+    for (int y = height-1; y >= 0; y--) {
+
+        for (int x = 0; x < width; x++) {
+
+            FreeImage_GetPixelIndex(grayBitmap, x, y, &pixelValue);
+            int brightness = (int)pixelValue;
+            std::cout << imdoc::getASCIIChar(brightness) << " ";
+        }
+
+        std::cout << std::endl;
+    }
+
+}
+
+
+void showPNGtoASCII(const char* imagePath) {
+
+    FIBITMAP* grayBitmap = FreeImage_Load(FIF_PNG, imagePath, PNG_DEFAULT);
+    if (!grayBitmap) {
+        std::cerr << "Ошибка загрузки изображения: " << imagePath << '\n';
+        return;
+    }
+
+    int width = FreeImage_GetWidth(grayBitmap);
+    int height = FreeImage_GetHeight(grayBitmap);
+
+
+    //int consoleWidth = 80;
+    //int consoleHeight = 40;
 
     //FIBITMAP* resizedBitmap = FreeImage_Rescale(grayBitmap, consoleWidth, consoleHeight, FILTER_BILINEAR);
     //FreeImage_Unload(grayBitmap);
 
     BYTE pixelValue;
-    for (int y = height-1; y >= 0; y--) {
+    for (int y = height - 1; y >= 0; y--) {
 
         for (int x = 0; x < width; x++) {
 
