@@ -4,35 +4,25 @@
 #include "img-processing/img-processing.h"	// ascii_preprocessing.h
 
 
-std::string getAbsolutePath(const std::string& relativePath) {
 
-	char fullPath[MAX_PATH];
-	if (GetFullPathNameA(relativePath.c_str(), MAX_PATH, fullPath, nullptr))
-		return std::string(fullPath);
-
-	// return string with exception msg if file not found
-	return std::string("Exception: file not found");
-}
 
 
 int main() {
 
 	setlocale(0, "rus");
 
-	//imdoc::testGetImageExtension();
-	//const char* name = "file.mpeg";
-	//std::cout << imdoc::getImageExtension(name) << std::endl;
-
 	//std::wstring testString = L"This is text print string";
 	//printDocument(testString);
 
 	const char* fileName = "kit.jpg";
 	const char* outputName = "output.jpg";
-	//std::string fullPath = getAbsolutePath(std::string(fileName));
-	//std::cout << "Абсолютный путь к файлу: " << fullPath << std::endl;
+	const char* textASCIIfileName = "image_to_ascii.txt"
 
 	PROCESS_IMAGE(fileName, outputName);	//processJPG, processPNG
-	SHOW_IMAGE_TO_ASCII(outputName);		//showJPG, showPNG
+
+	std::ofstream textASCII(textASCIIfileName);
+
+	SHOW_IMAGE_TO_ASCII(outputName, textASCII);		//showJPG, showPNG
 
 
 
